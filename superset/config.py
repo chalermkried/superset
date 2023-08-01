@@ -395,7 +395,7 @@ DEFAULT_FEATURE_FLAGS: Dict[str, bool] = {
     "DISABLE_DATASET_SOURCE_EDIT": False,
     # When using a recent version of Druid that supports JOINs turn this on
     "DRUID_JOINS": False,
-    "DYNAMIC_PLUGINS": False,
+    "DYNAMIC_PLUGINS": True,
     # With Superset 2.0, we are updating the default so that the legacy datasource
     # editor no longer shows. Currently this is set to false so that the editor
     # option does show, but we will be depreciating it.
@@ -729,7 +729,13 @@ HTML_SANITIZATION = True
 #   }
 # }
 # Be careful when extending the default schema to avoid XSS attacks.
-HTML_SANITIZATION_SCHEMA_EXTENSIONS: Dict[str, Any] = {}
+# HTML_SANITIZATION_SCHEMA_EXTENSIONS: Dict[str, Any] = {}
+HTML_SANITIZATION_SCHEMA_EXTENSIONS = {
+  "attributes": {
+    "*": ["style","className"],
+  },
+  "tagNames": ["style"],
+}
 
 # Chrome allows up to 6 open connections per domain at a time. When there are more
 # than 6 slices in dashboard, a lot of time fetch requests are queued up and wait for

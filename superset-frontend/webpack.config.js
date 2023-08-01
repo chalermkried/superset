@@ -31,7 +31,7 @@ const {
   WebpackManifestPlugin,
   getCompilerHooks,
 } = require('webpack-manifest-plugin');
-const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+// const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const parsedArgs = require('yargs').argv;
 const getProxyConfig = require('./webpack.proxy-config');
 const packageConfig = require('./package');
@@ -154,18 +154,18 @@ if (!isDevMode) {
     }),
   );
 
-  plugins.push(
-    // runs type checking on a separate process to speed up the build
-    new ForkTsCheckerWebpackPlugin({
-      eslint: {
-        files: './{src,packages,plugins}/**/*.{ts,tsx,js,jsx}',
-        memoryLimit: 4096,
-        options: {
-          ignorePath: './.eslintignore',
-        },
-      },
-    }),
-  );
+  // plugins.push(
+  //   // runs type checking on a separate process to speed up the build
+  //   new ForkTsCheckerWebpackPlugin({
+  //     eslint: {
+  //       files: './{src,packages,plugins}/**/*.{ts,tsx,js,jsx}',
+  //       memoryLimit: 4096,
+  //       options: {
+  //         ignorePath: './.eslintignore',
+  //       },
+  //     },
+  //   }),
+  // );
 }
 
 const PREAMBLE = [path.join(APP_DIR, '/src/preamble.ts')];
